@@ -1,3 +1,4 @@
+;(load "practica.lisp")
 
 (defun area_triangulo()
    (princ "Escriba la base: ")
@@ -6,7 +7,6 @@
    (setq altura (read))
    (write  (/ (* base altura) 2))
 )
-;(area_triangulo)
 
 (defun area_rectangulo()
    (princ "Escriba la base: ")
@@ -16,23 +16,17 @@
    (write  (* base altura))
 )
 
-;(area_rectangulo)
-
 (defun area_cuadrado()
    (princ "Escriba un lado: ")
    (setq lado (read))
    (write (* lado lado))
 )
 
-;(area_cuadrado)
-
 (defun area_circulo()
   (princ "Escriba el radio: ")
   (setq radio (read))
    (write (* radio radio 3.1416))
 )
-
-;(area_circulo)
 
 (defun area_rombo()
   (princ "Escriba D: ")
@@ -42,4 +36,47 @@
    (write (/ (* d1 d2) 2))
 )
 
-;(area_rombo)
+(defun area_trapecio()
+    (princ "Escriba la altura: ")
+    (setq altura (read))
+    (princ "Escriba B: ")
+    (setq b1 (read))
+    (princ "Escriba b: ")
+    (setq b2 (read))
+    (write (/ (* (+ b1 b2) altura) 2))
+)
+
+(defun area_cometa()
+    (princ "Escriba D: ")
+    (setq d1 (read))
+    (princ "Escriba d: ")
+    (setq d2 (read))
+    (write (* (/ d1 2) d2))    
+)
+
+(defun area_poligono_regular()
+    (princ "Escriba el número de lados: ")
+    (setq numero_lados (read))
+    (princ "Escriba el valor de un lado: ")
+    (setq lado (read))
+    (setq angulo (/ 360 (* 2 numero_lados)))
+    (setq apotema (/ lado (* 2 (tan (/ (* angulo 3.1416) 180)))))
+    (write (/ (* apotema numero_lados lado) 2))
+
+)
+
+(defun area_corona_circular()
+    (princ "Escriba R: ")
+    (setq r (read))
+    (princ "Escriba r: ")
+    (setq r2 (read))
+    (write (* 3.1416 (- (* r r) (* r2 r2))))
+)
+
+(defun area_sector_circular()
+    (princ "Escriba el angulo: ")
+    (setq angulo (read))
+    (princ "Escriba el radio: ")
+    (setq radio (read))
+    (write (/ (* 3.1416 radio radio angulo) 360))
+)
