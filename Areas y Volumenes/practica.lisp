@@ -1,39 +1,39 @@
 ;(load "practica.lisp")
 
 (defun area_triangulo()
-   (princ "Escriba la base: ")
-   (setq base (read))
-   (princ "Escriba la altura: ")
-   (setq altura (read))
-   (write  (/ (* base altura) 2))
+    (princ "Escriba la base: ")
+    (setq base (read))
+    (princ "Escriba la altura: ")
+    (setq altura (read))
+    (write  (/ (* base altura) 2))
 )
 
 (defun area_rectangulo()
-   (princ "Escriba la base: ")
-   (setq base (read))
-   (princ "Escriba la altura: ")
-   (setq altura (read))
-   (write  (* base altura))
+    (princ "Escriba la base: ")
+    (setq base (read))
+    (princ "Escriba la altura: ")
+    (setq altura (read))
+    (write  (* base altura))
 )
 
 (defun area_cuadrado()
-   (princ "Escriba un lado: ")
-   (setq lado (read))
-   (write (* lado lado))
+    (princ "Escriba un lado: ")
+    (setq lado (read))
+    (write (* lado lado))
 )
 
 (defun area_circulo()
-  (princ "Escriba el radio: ")
-  (setq radio (read))
-   (write (* radio radio 3.1416))
+    (princ "Escriba el radio: ")
+    (setq radio (read))
+    (write (* radio radio 3.1416))
 )
 
 (defun area_rombo()
-  (princ "Escriba D: ")
-   (setq d1 (read))
-   (princ "Escriba d: ")
-   (setq d2 (read))
-   (write (/ (* d1 d2) 2))
+    (princ "Escriba D: ")
+    (setq d1 (read))
+    (princ "Escriba d: ")
+    (setq d2 (read))
+    (write (/ (* d1 d2) 2))
 )
 
 (defun area_trapecio()
@@ -62,7 +62,6 @@
     (setq angulo (/ 360 (* 2 numero_lados)))
     (setq apotema (/ lado (* 2 (tan (/ (* angulo 3.1416) 180)))))
     (write (/ (* apotema numero_lados lado) 2))
-
 )
 
 (defun area_corona_circular()
@@ -80,3 +79,50 @@
     (setq radio (read))
     (write (/ (* 3.1416 radio radio angulo) 360))
 )
+
+;Volumenes
+
+;Cubo
+(defun volumen_cubo()
+    (princ "Escriba el valor de un lado: ")
+    (setq lado (read))
+    (format t "El volumen del cubo es: ~d metros cubicos" (* lado lado lado))
+)
+
+;Ortoedro
+(defun volumen_ortoedro()
+    (princ "Escriba la longitud (a): ")
+    (setq a (read))
+    (princ "Escriba la latitud (b): ")
+    (setq b (read))
+    (princ "Escriba la altura (h): ")
+    (setq h (read))
+    (format t "El volumen del ortoedro es: ~d metros cubicos" (* a b h))
+)
+
+;Cilindro
+(defun volumen_cilindro()
+    (princ "Escriba el radio: ")
+    (setq radio (read))
+    (princ "Escriba la altura: ")
+    (setq altura (read))
+    (format t "El volumen del cilindro es: ~d metros cubicos" (* 3.1416 radio radio altura))
+)
+
+;volumen_cono
+(defun volumen_cono()
+    (princ "Escriba la altura: ")
+    (setq altura (read))
+    (princ "Escriba el radio: ")
+    (setq radio (read))
+    (setq volumen (/ (* 3.1416 radio radio altura) 3))
+    (format t "El volumen del cono es: ~d metros cubicos" volumen)
+)
+
+;volumen_esfera
+(defun volumen_esfera()
+    (princ "Escriba el radio: ")
+    (setq radio (read))
+    (format t "El volumen de la esfera es: ~d metros cubicos" (/ (* 4 3.1416 radio radio radio) 3))
+)
+
