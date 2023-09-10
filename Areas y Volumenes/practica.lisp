@@ -81,15 +81,12 @@
 )
 
 ;Volumenes
-
-;Cubo
 (defun volumen_cubo()
     (princ "Escriba el valor de un lado: ")
     (setq lado (read))
-    (format t "El volumen del cubo es: ~d metros cubicos" (* lado lado lado))
+    (format t "El volumen del cubo es: ~d unidades cubicas" (* lado lado lado))
 )
 
-;Ortoedro
 (defun volumen_ortoedro()
     (princ "Escriba la longitud (a): ")
     (setq a (read))
@@ -97,32 +94,72 @@
     (setq b (read))
     (princ "Escriba la altura (h): ")
     (setq h (read))
-    (format t "El volumen del ortoedro es: ~d metros cubicos" (* a b h))
+    (format t "El volumen del ortoedro es: ~d unidades cubicas" (* a b h))
 )
 
-;Cilindro
 (defun volumen_cilindro()
     (princ "Escriba el radio: ")
     (setq radio (read))
     (princ "Escriba la altura: ")
     (setq altura (read))
-    (format t "El volumen del cilindro es: ~d metros cubicos" (* 3.1416 radio radio altura))
+    (format t "El volumen del cilindro es: ~d unidades cubicas" (* 3.1416 radio radio altura))
 )
 
-;volumen_cono
 (defun volumen_cono()
     (princ "Escriba la altura: ")
     (setq altura (read))
     (princ "Escriba el radio: ")
     (setq radio (read))
     (setq volumen (/ (* 3.1416 radio radio altura) 3))
-    (format t "El volumen del cono es: ~d metros cubicos" volumen)
+    (format t "El volumen del cono es: ~d unidades cubicas" volumen)
 )
 
-;volumen_esfera
 (defun volumen_esfera()
     (princ "Escriba el radio: ")
     (setq radio (read))
-    (format t "El volumen de la esfera es: ~d metros cubicos" (/ (* 4 3.1416 radio radio radio) 3))
+    (format t "El volumen de la esfera es: ~d unidades cubicas" (/ (* 4 3.1416 (expt radio 3)) 3))
+)
+
+(defun volumen_tetraedro() 
+    (princ "Escriba el valor de una arista: ")
+    (setq arista (read))
+    (format t "El volumen del tetraedro es: ~d unidades cubicas" (* (/ (sqrt 2) 12) (expt arista 3)))    
+)
+
+(defun volumen_piramide_triangular()
+    (princ "Escriba el valor de la base: ")
+    (setq base (read))
+    (princ "Escriba el valor de la altura de la base: ")
+    (setq altura_base (read))
+    (princ "Escriba la altura de la piramide: ")
+    (setq altura_piramide (read))
+    (setq area (/ (* base altura_base) 2))
+    (format t "El volumen de la piramide triangular es: ~d unidades cubicas." (/ (* area altura_piramide) 3))
+)
+
+(defun volumen_piramide_cuadrangular()
+    (princ "Escriba el valor de la base: ")
+    (setq base (read))
+    (princ "Escriba el valor de la altura de la piramide: ")
+    (setq altura (read))
+    (format t "El volumen de la piramide cuadrangular es: ~d unidades cubicas" (/ (* (expt base 2) altura) 3))
+)
+
+(defun volumen_prisma_cuadrangular()
+    (princ "Escriba el valor de la base: ")
+    (setq base (read))
+    (princ "Escriba la altura del prisma: ")
+    (setq altura (read))
+    (format t "El volumen del prisma cuadrangular es: ~d unidades cubicas" (* (expt base 2) altura))
+)
+
+(defun volumen_prisma_triangular()
+    (princ "Escriba el valor de la base: ")
+    (setq base (read))
+    (princ "Escriba el valor de la altura de la base: ")
+    (setq altura_base (read))
+    (princ "Escriba el valor de la altura del prisma: ")
+    (setq altura_prisma (read))
+    (format t "El volumen del prisma triangular es: ~d unidades cubicas" (* (/ (* base altura_base) 2) altura_prisma))
 )
 
