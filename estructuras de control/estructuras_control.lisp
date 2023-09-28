@@ -49,18 +49,6 @@
 )
 
 (defun ejercicio3()
-#|     (format t "Escriba una letra MINUSCULA: ")
-    (setq letra (read))
-    (case letra
-        (a (princ "vocal"))
-        (e (princ "vocal"))
-        (i (princ "vocal"))
-        (o (princ "vocal"))
-        (u (princ "vocal"))
-    )
-    (cond 
-        ((or ()) (princ "vocal"))
-    ) |#
     (princ "Escriba una letra MINUSCULA: ")
     (setq caracter (read-char))    
     ;Validar que sea un caracter en minuscula, descartando letras en mayuscula y simbolos especiales
