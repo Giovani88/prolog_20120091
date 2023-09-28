@@ -60,3 +60,15 @@
         )
     )
 )
+
+(defun ejercicio4()
+    (princ "Escriba un año: ")
+    (setq numero (read))
+    #| (if (= (mod ) 0) () ()) |#
+    (cond 
+        ((= (mod numero 4) 0) 
+            (if (or (/= (mod numero 100) 0) (= (mod numero 400) 0)) (format t "El año ~a, es bisiesto" numero) (format t "El año ~a, no es bisiesto" numero))
+        )
+        (t (format t "El año ~a, no es bisiesto" numero))
+    )
+)
