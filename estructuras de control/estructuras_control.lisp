@@ -64,11 +64,20 @@
 (defun ejercicio4()
     (princ "Escriba un año: ")
     (setq numero (read))
-    #| (if (= (mod ) 0) () ()) |#
     (cond 
         ((= (mod numero 4) 0) 
             (if (or (/= (mod numero 100) 0) (= (mod numero 400) 0)) (format t "El año ~a, es bisiesto" numero) (format t "El año ~a, no es bisiesto" numero))
         )
         (t (format t "El año ~a, no es bisiesto" numero))
+    )
+)
+(defun ejercicio5()
+    (princ "Escriba un numero de mes: ")
+    (setq mes (read))
+    (cond 
+        ((= mes 2)(format t "El mes ~a tiene 28 dias" mes))
+        ((or (= mes 4) (= mes 6) (= mes 9) (= mes 11))(format t "El mes ~a tiene 30 dias" mes))
+        ((or (= mes 1) (= mes 3) (= mes 5) (= mes 7) (= mes 8) (= mes 10) (= mes 12))(format t "El mes ~a tiene 31 dias" mes))
+        (t (princ "Mes erroneo"))
     )
 )
