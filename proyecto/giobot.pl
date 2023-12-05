@@ -1,14 +1,13 @@
-
-eliza:-	writeln('Hola , mi nombre es  Eliza tu  chatbot,
+giobot:-	writeln('Hola , mi nombre es Giobot tu chatbot,
 	por favor ingresa tu consulta,
 	usar solo minúsculas sin . al final:'),
 	readln(Input),
-	eliza(Input),!.
-eliza(Input):- Input == ['Adios'],
+	giobot(Input),!.
+giobot(Input):- Input == ['Adios'],
 	writeln('Adios. espero poder verte ayudado.'), !.
-eliza(Input):- Input == ['Adios', '.'],
+giobot(Input):- Input == ['Adios', '.'],
 	writeln('Adios. espero poder verte ayudado.'), !.
-eliza(Input) :-
+giobot(Input) :-
 	template(Stim, Resp, IndStim),
 	match(Stim, Input),
 	% si he llegado aquí es que he
@@ -16,7 +15,7 @@ eliza(Input) :-
 	replace0(IndStim, Input, 0, Resp, R),
 	writeln(R),
 	readln(Input1),
-	eliza(Input1), !.
+	giobot(Input1), !.
 
 template([hola, mi, nombre, es, s(_), '.'], ['Hola', 0, 'Como', estas, tu, '?'], [4]).
 template([buendia, mi, nombre, es, s(_), '.'], ['buen dia', 'Como', estas, tu, 0, '?'], [4]).
@@ -41,14 +40,14 @@ template([tengo,el,sintoma,de,s(_),que,medicamento,debo,tomar,'.'], [flagReceta]
 template([tengo,s(_),que,especialista,me,puede,atender,'.'], [flagEspecialista], [1]).
 template([tengo,la,enfermedad,de,s(_),que,especialista,y,medicina,necesito,'.'], [flagDiagnostico], [4]).
 
-% pregunta algo que le gusta a eliza
+% pregunta algo que le gusta a giobot
 template([te, gustan, las, s(_), _], [flagLike], [3]).
 template([te, gustan, los, s(_), _], [flagLike], [3]).
 
-% pregunta algo que hace eliza
+% pregunta algo que hace giobot
 template([tu, eres, s(_), _], [flagDo], [2]).
 template([tu, puedes, s(_), _], [flagDo], [2]).
-% pregunta algo que es eliza
+% pregunta algo que es giobot
 template([que, eres, tu, s(_)], [flagIs], [3]).
 template([eres, s(_), '?'], [flagIs], [1]).
 
@@ -66,9 +65,9 @@ template([please, s(_), _], ['No', i, can, not, help, ',', i, am, just, a, machi
 
 				  
 template(_, ['Porfavor', se, mas, especifico, '.'], []). 
-% Lo que le gusta a eliza : flagLike 
-elizaLikes(X, R):- likes(X), R = ['Si', me, gustan, X].
-elizaLikes(X, R):- \+likes(X), R = ['No',no,me,gustan, X].
+% Lo que le gusta a giobot : flagLike 
+giobotLikes(X, R):- likes(X), R = ['Si', me, gustan, X].
+giobotLikes(X, R):- \+likes(X), R = ['No',no,me,gustan, X].
 likes(apples).
 likes(ponies).
 likes(zombies).
@@ -78,16 +77,16 @@ likes(carros).
 
 
 
-% lo que hace eliza: flagDo
-elizaDoes(X, R):- does(X), R = ['Si', puedo, X, y, amo, hacerlo].
-elizaDoes(X, R):- \+does(X), R = ['No',no,puedo, X ,'.', eso, es,muy,dificil,para,mi].
+% lo que hace giobot: flagDo
+giobotDoes(X, R):- does(X), R = ['Si', puedo, X, y, amo, hacerlo].
+giobotDoes(X, R):- \+does(X), R = ['No',no,puedo, X ,'.', eso, es,muy,dificil,para,mi].
 does(estudiar).
 does(cocinar).
 does(trabajar).
 
-% lo que es eliza: flagIs
-elizaIs(X, R):- is0(X), R = ['Si', yo, soy, X].
-elizaIs(X, R):- \+is0(X), R = ['No', no,soy, X].
+% lo que es giobot: flagIs
+giobotIs(X, R):- is0(X), R = ['Si', yo, soy, X].
+giobotIs(X, R):- \+is0(X), R = ['No', no,soy, X].
 is0(dumb).
 is0(weird).
 is0(nice).
@@ -178,26 +177,26 @@ match([S|Stim],[_|Input]) :-
 
 replace0([], _, _, Resp, R):- append(Resp, [], R),!.
 
-% Eliza likes:
+% giobot likes:
 replace0([I|_], Input, _, Resp, R):-
 	nth0(I, Input, Atom),
 	nth0(0, Resp, X),
 	X == flagLike,
-	elizaLikes(Atom, R).
+	giobotLikes(Atom, R).
 
-% Eliza does:
+% giobot does:
 replace0([I|_], Input, _, Resp, R):-
 	nth0(I, Input, Atom),
 	nth0(0, Resp, X),
 	X == flagDo,
-	elizaDoes(Atom, R).
+	giobotDoes(Atom, R).
 
-% Eliza is:
+% giobot is:
 replace0([I|_], Input, _, Resp, R):-
 	nth0(I, Input, Atom),
 	nth0(0, Resp, X),
 	X == flagIs,
-	elizaIs(Atom, R).
+	giobotIs(Atom, R).
 
 % **** SE ****
 % Medicamento a tomar
