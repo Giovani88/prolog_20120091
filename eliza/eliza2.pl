@@ -57,4 +57,4 @@ replace0([I|Index], Input, N, Resp, R):-
 	length(Index, M), M > 0,
 	select(N, Resp, Atom, R1),
 	N1 is N + 1,
-	replace0(Index, Input, N1, R1, R),!.
+	replace0(Index, Input, N1, R1, R),!.	
