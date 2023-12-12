@@ -34,11 +34,15 @@ template([yo, soy, s(_),'.'], [porque, eres, tu, 0, '?'], [2]).
 template([que, tal,yo,soy, s(_), '.'], ['Hola', 0, 'Como', estas, tu, '?'], [4]).
 
 % SE
-%template([tengo,la,enfermedad,de,s(_),que,medicamento,debo,tomar,'.'], ['Hola',0,'asies'], [3]).
 template([tengo,la,enfermedad,de,s(_),que,medicamento,debo,tomar,'.'], [flagMedicamento], [4]).
 template([tengo,el,sintoma,de,s(_),que,medicamento,debo,tomar,'.'], [flagReceta], [4]).
 template([tengo,s(_),que,especialista,me,puede,atender,'.'], [flagEspecialista], [1]).
 template([tengo,la,enfermedad,de,s(_),que,especialista,y,medicina,necesito,'.'], [flagDiagnostico], [4]).
+
+template([que, probabilidad, tengo, de, tener, s(_), si, tengo, s(_), y, s(_),_], [flagDiagnostico2], [5,8,10]).
+template([que, probabilidad, tengo, de, tener, s(_), si, tengo, s(_),',', s(_),y,s(_),_], [flagDiagnostico3], [5,8,10,12]).
+template([que, probabilidad, tengo, de, tener, s(_), si, tengo, s(_),',',s(_),',',s(_),y,s(_),_], [flagDiagnostico4], [5,8,10,12,14]).
+template([que, probabilidad, tengo, de, tener, s(_), si, tengo, s(_),_], [flagDiagnostico1], [5,8]).
 
 % template EBOLA definicion ebola
 template([que,es,la,enfermedad,de,ebola,_], [flagDefinicion], [5]).
@@ -211,6 +215,20 @@ diagnostico(E, R):- mereceta(Es,M,E), R=[Es,M].
 mereceta(Es, M, E):-medicinade(M, E),sintomade(S, E), atiendeespecialista(Es,S).
 atiendeespecialista(E, S):- sintomade(S,Z),especialistade(E, Z).
 
+
+diagnosticoDe(E,Sintomas,R):- diagnostico(Sintomas,E,K),R=['De acuerdo a mi base de conocimiento, tienes una probabilidad de:',K,'%','de tener',E].
+diagnosticoDe(E,Sintomas,R):- \+diagnostico(Sintomas,E,K),R=['Lo siento, hasta mi ultima actualizacion 2023, no conozco la enfermedad o sintomas asociados a la misma'].
+
+% porcentaje de estar enfermo de una enfermedad X dada una lista de sintomas 
+buscar([], E , 0).
+buscar(X , E , 1) :- sintomade(X, E).
+buscar([X|Xs] , E , P) :- enfermedad(E) , buscar(X , E , S1) , buscar(Xs , E ,S2) , P is S1 + S2.
+
+cantSint(E , C) :- findall(X , sintomade(X, E) , L) , length(L , R), C is R.
+
+diagnostico([X|Xs] , E , K) :- buscar([X|Xs] , E , P) , cantSint(E , T) , K is P * 100 / T.
+
+
 % ** reglas NARUTO **
 definicion(X,R):- definicionde(Lista,X),
 					length(Lista, Length),
@@ -345,6 +363,59 @@ replace0([I|_], Input, _, Resp, R):-
 	nth0(0, Resp, X),
 	X == flagDiagnostico,
 	diagnostico(Atom, R).
+
+% porcentaje de enfermedad
+replace0([I,I2|_], Input, _, Resp, R):-
+	nth0(I, Input, E),
+	nth0(I2, Input, S1),	
+	nth0(0, Resp, X),
+	X == flagDiagnostico1,
+	Sintomas = [S1],
+	diagnosticoDe(E, Sintomas, R).
+
+% porcentaje de enfermedad
+replace0([I,I2,I3|_], Input, _, Resp, R):-
+	nth0(I, Input, E),
+	nth0(I2, Input, S1),
+	nth0(I3, Input, S2),
+	nth0(0, Resp, X),
+	X == flagDiagnostico2,
+	Sintomas = [S1,S2],
+	diagnosticoDe(E,Sintomas, R).
+
+% porcentaje de enfermedad
+replace0([I,I2,I3,I4|_], Input, _, Resp, R):-
+	nth0(I, Input, E),
+	nth0(I2, Input, S1),
+	nth0(I3, Input, S2),
+	nth0(I4, Input, S3),
+	nth0(0, Resp, X),
+	X == flagDiagnostico3,
+	Sintomas = [S1,S2,S3],
+	diagnosticoDe(E,Sintomas, R).
+
+% porcentaje de enfermedad
+replace0([I,I2,I3,I4,I5|_], Input, _, Resp, R):-
+	nth0(I, Input, E),
+	nth0(I2, Input, S1),
+	nth0(I3, Input, S2),
+	nth0(I4, Input, S3),
+	nth0(I5, Input, S4),
+	nth0(0, Resp, X),
+	X == flagDiagnostico4,
+	Sintomas = [S1,S2,S3,S4],
+	diagnosticoDe(E,Sintomas, R).
+
+% porcentaje de enfermedad
+replace0([I,I2,I3|_], Input, _, Resp, R):-
+	nth0(I, Input, E),
+	nth0(I2, Input, S1),
+	nth0(I3, Input, S2),
+	nth0(0, Resp, X),
+	X == flagPrueba,
+	Sintomas = [S1,S2],
+	diagnosticoDe(E,Sintomas, R).
+
 
 
 % *** NARUTO ***

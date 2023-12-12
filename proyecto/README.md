@@ -16,6 +16,26 @@ Giobot reconoce las siguientes preguntas:
 * "tengo la enfermedad de ***gripe*** que especialista y medicina necesito."
 
 
+También devuelve el **porcentaje** de tener una enfermedad X a partir de una lista de síntomas relacionados a esa enfermedad. La enfermedad y la lista de síntomas, son dados por el usuario.
+
+Para ello, se hace uso de la siguiente regla:
+``` prolog
+diagnostico([X|Xs] , E , K) :- buscar([X|Xs] , E , P) , cantSint(E , T) , K is P * 100 / T.
+```
+Toma los siguientes parámetros:
+
+* La lista de síntomas [X,Xs].
+* La enfermedad (E).
+* La variable que tendrá el resultado del porcentaje obtenido (K).
+
+Las preguntas asociadas a esta consulta, son las siguientes:
+
+* que probabilidad tengo de tener **gripe** si tengo **tos**?
+* que probabilidad tengo de tener **gripe** si tengo **tos** y **fiebre**?
+* que probabilidad tengo de tener **gripe** si tengo **tos**, **fiebre** y **cansancio**?
+* que probabilidad tengo de tener **gripe** si tengo **tos**, **fiebre**, **cansancio** y **dolorcabeza**?
+
+Nótese que esta limitado a 4 síntomas por enfermedad.
 ## 2. Naruto
 Giobot reconoce las siguientes preguntas:
 
