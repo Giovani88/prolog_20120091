@@ -7,11 +7,6 @@
 
 ---
 # Tabla de contenido
-- [Tareas y ejercicios](#tareas-y-ejercicios)
-    - [Tareas y ejercicios realizados en clase para la materia de programación lógica y funcional. Agosto - Diciembre 2023.](#tareas-y-ejercicios-realizados-en-clase-para-la-materia-de-programación-lógica-y-funcional-agosto---diciembre-2023)
-    - [Jonathan Giovani Ceja Contreras](#jonathan-giovani-ceja-contreras)
-    - [20120091](#20120091)
-- [Tabla de contenido](#tabla-de-contenido)
   - [Áreas y Volúmenes](#áreas-y-volúmenes)
     - [Ejercicios de Áreas](#ejercicios-de-áreas)
       - [Triangulo](#triangulo)
