@@ -7,6 +7,11 @@
 
 ---
 # Tabla de contenido
+- [Tareas y ejercicios](#tareas-y-ejercicios)
+    - [Tareas y ejercicios realizados en clase para la materia de programación lógica y funcional. Agosto - Diciembre 2023.](#tareas-y-ejercicios-realizados-en-clase-para-la-materia-de-programación-lógica-y-funcional-agosto---diciembre-2023)
+    - [Jonathan Giovani Ceja Contreras](#jonathan-giovani-ceja-contreras)
+    - [20120091](#20120091)
+- [Tabla de contenido](#tabla-de-contenido)
   - [Áreas y Volúmenes](#áreas-y-volúmenes)
     - [Ejercicios de Áreas](#ejercicios-de-áreas)
       - [Triangulo](#triangulo)
@@ -67,6 +72,9 @@
     - [Ejercicio 4](#ejercicio-4)
     - [Ejercicio 5](#ejercicio-5)
   - [Diagrama árbol binario](#diagrama-árbol-binario)
+  - [Factorial swipl](#factorial-swipl)
+  - [Fibonacci swipl](#fibonacci-swipl)
+  - [Árbol genealógico swpil](#árbol-genealógico-swpil)
   - [Prueba de escritorio sistema experto](#prueba-de-escritorio-sistema-experto)
 
 
@@ -873,9 +881,84 @@ La imagen completa del diagrama se encuentra en el directorio de "diagrama arbol
 
 ![Diagrama arbol](diagrama_arbol_binario/arbol.jpeg)
 
+## Factorial swipl
+Ejercicio realizado en clase para calcular el factorial en el lenguaje de swipl.
+
+``` prolog
+fact(0,1).
+fact(N,M):-N>0, N1 is N-1, fact(N1,M1), M is M1 * N.
+```
+
+## Fibonacci swipl
+Ejercicio realizado durante clase para obtener fibonacci usando recursividad en swipl.
+
+``` prolog
+fibonacci(0,0).
+fibonacci(1,1).
+fibonacci(N,Y):-
+        N>1,
+        N1 is N-1,
+        fibonacci(N1,Y1),
+        N2 is N-2,
+        fibonacci(N2,Y2),
+        Y is Y1+Y2.
+```
+
+## Árbol genealógico swpil
+Esta tarea (actividad en clase) consiste en crear hechos para formar nuestro árbol genealogico con miembros de la familia más cercanos.
+
+Los hechos se presentan a continuación:
+
+``` prolog
+padre(luis).
+padre(abel).
+padre(fausto).
+padre(ramon).
+
+madre(laura).
+madre(silvia).
+madre(maria).
+madre(lucero).
+
+padrede(luis, giovani).
+padrede(luis, sofia).
+padrede(luis, fatima).
+padrede(abel, pablo).
+padrede(abel, pedro).
+padrede(ramon, monserrat).
+padrede(fausto, ivan).
+padrede(fausto, miriam).
+padrede(fausto, carol).
+
+madrede(maria, giovani).
+madrede(maria, sofia).
+madrede(maria, fatima).
+madrede(lucero, pablo).
+madrede(lucero, pedro).
+madrede(laura, monserrat).
+madrede(silvia, ivan).
+madrede(silvia, miriam).
+madrede(silvia, carol).
+
+hermanode(luis,abel).
+hermanode(giovani,sofia).
+hermanode(giovani,fatima).
+hermanode(silvia,laura).
+hermanode(pablo,pedro).
+```
+
+La regla para determinar los abuelos, es la siguiente:
+
+```prolog
+abuelos(X,Y):- padrede(X,W),padrede(W,Y);madrede(X,W),madrede(W,Y).
+```
+
+
+
+
 ## Prueba de escritorio sistema experto
 
-La actividad en clase consistia en realizar una prueba de escritorio ya sea en excel o libreta, sobre una versión de eliza. El objetivo era comprender el proceso que sigue eliza cuando encuentra un template que hace match y como devuelve la respuesta.
+La actividad en clase consistía en realizar una prueba de escritorio ya sea en excel o libreta, sobre una versión de eliza. El objetivo era comprender el proceso que sigue eliza cuando encuentra un template que hace match y como devuelve la respuesta.
 
 El archivo csv se encuentra en el directorio "prueba_escritorio", puede acceder también presionando [aqui](prueba_escritorio_eliza/prueba_escritorio.xlsx)
 
